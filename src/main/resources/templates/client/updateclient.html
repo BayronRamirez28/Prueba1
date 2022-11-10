@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8">
+<title>Actualizar Cliente</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+	crossorigin="anonymous">
+<script src="http://code.jquery.com/jquery-3.6.1.min.js"></script>
+</head>
+<body>
+	<div class="container">
+		<h1>Editar Cliente</h1>
+		<form th:action="@{/clientes/save}" method="post">
+			<input type="hidden" name="id" th:value="${cliente.id}">
+			<div class="mb-3">
+				<label for="formGroupExampleInput" class="form-label">Nombres
+				</label> <input type="text" class="form-control" id="formGroupExampleInput"
+					name="name" th:value="${cliente.name}">
+			</div>
+			<div class="mb-3">
+				<label for="formGroupExampleInput" class="form-label">Apellidos
+				</label> <input type="text" class="form-control" id="formGroupExampleInput"
+					name="lastname" th:value="${cliente.lastname}">
+			</div>
+			<div class="mb-3">
+				<label for="formGroupExampleInput" class="form-label">Fecha
+					Nacimiento </label> <input type="date" class="form-control"
+					id="formGroupExampleInput" name="birthdate"
+					th:value="${cliente.birthdate}">
+			</div>
+			<div class="mb-3">
+				<label for="formGroupExampleInput" class="form-label">Ciudad</label>
+				<select name="city" class="form-control">
+					<option th:selected="${cliente.city == 'Bogota'}"
+						th:value="'Bogota'" th:text="'Bogota'"></option>
+					<option th:selected="${cliente.city == 'Medellin'}"
+						th:value="'Medellin'" th:text="'Medellin'"></option>
+					<option th:selected="${cliente.city == 'Cali'}"
+						th:value="'Cali'" th:text="'Cali'"></option>
+					<option th:selected="${cliente.city == 'Cartagena'}"
+						th:value="'Cartagena'" th:text="'Cartagena'"></option>
+					<option th:selected="${cliente.city == 'Santa Marta'}"
+						th:value="'Santa Marta'" th:text="'Santa Marta'"></option>
+					<option th:selected="${cliente.city == 'Barranquilla'}"
+						th:value="'Barranquilla'" th:text="'Barranquilla'"></option>
+					<option th:selected="${cliente.city == 'Villavicencio'}"
+						th:value="'Villavicencio'" th:text="'Villavicencio'"></option>
+					<option th:selected="${cliente.city == 'Florencia'}"
+						th:value="'Florencia'" th:text="'Florencia'"></option>
+					<option th:selected="${cliente.city == 'Bucaramanga'}"
+						th:value="'Bucaramanga'" th:text="'Bucaramanga'"></option>
+					<option th:selected="${cliente.city == 'Tunja'}"
+						th:value="'Tunja'" th:text="'Tunja'"></option>
+				</select>
+			</div>
+			<div class="mb-3">
+				<label for="formGroupExampleInput" class="form-label">Correo
+					Electronico </label> <input type="text" class="form-control"
+					id="formGroupExampleInput" name="email" th:value="${cliente.email}">
+			</div>
+			<div class="mb-3">
+				<label for="formGroupExampleInput" class="form-label">Telefono
+				</label> <input type="number" class="form-control"
+					id="formGroupExampleInput" name="telephone"
+					th:value="${cliente.telephone}">
+			</div>
+			<div class="mb-3">
+				<label for="formGroupExampleInput" class="form-label">Ocupacion</label>
+				<div class="col-sm-8">
+					<select name="occupation" class="form-control">
+						<option th:selected="${cliente.occupation == 'Empleado'}"
+							th:value="Empleado" th:text="Empleado"></option>
+						<option th:selected="${cliente.occupation == 'Independiente'}"
+							th:value="'Independiente'" th:text="'Independiente'"></option>
+						<option th:selected="${cliente.occupation == 'Pensionado'}"
+							th:value="'Pensionado'" th:text="'Pensionado'"></option>
+					</select>
+				</div>
+			</div>
+			<div class="mb-3">
+				<label for="formGroupExampleInput" class="form-label">Viabilidad
+				</label> 
+				<select name="viability" class="form-control">
+						<option th:selected="${cliente.viability == 'Viable'}"
+							th:value="Viable" th:text="Viable"></option>
+						<option th:selected="${cliente.viability == 'No viable'}"
+							th:value="'No viable'" th:text="'No viable'"></option>
+					</select>
+			</div>
+			<button type="submit" class="btn btn-success">Actualizar</button>
+		</form>
+	</div>
+
+</body>
+</html>

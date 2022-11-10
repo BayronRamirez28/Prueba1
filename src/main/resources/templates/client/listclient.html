@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" >
+<head>
+<meta charset="UTF-8">
+<title>Clientes</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+	crossorigin="anonymous">
+<script
+	src="http://code.jquery.com/jquery-3.6.1.min.js"></script>
+</head>
+<body>
+<div th:fragment="listaclientes">
+	<table class="table table-sm" >
+			<thead>
+				<tr>
+					<th>Documento</th>
+					<th>Nombres</th>
+					<th>Apellidos</th>
+					<th>Fecha de nacimiento</th>
+					<th>Ciudad</th>
+					<th>Correo Electronico</th>
+					<th>Telefono</th>
+					<th>Ocupacion</th>
+					<th>Viabilidad</th>
+					<th>Acción</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="cliente:${clientes}">
+					<td th:text="${cliente.id}"></td>
+					<td th:text="${cliente.name}"></td>
+					<td th:text="${cliente.lastname}"></td>
+					<td th:text="${cliente.birthdate}"></td>
+					<td th:text="${cliente.city}"></td>
+					<td th:text="${cliente.email}"></td>
+					<td th:text="${cliente.telephone}"></td>
+					<td th:text="${cliente.occupation}"></td>
+					<td th:text="${cliente.viability}"></td>
+					<td><a
+						th:href="@{/clientes/edit/{id} (id=${cliente.id}) }"
+						class="btn btn-warning">Editar</a></td>
+				</tr>
+			</tbody>
+		</table>
+</div>
+	
+	
+</body>
+</html>

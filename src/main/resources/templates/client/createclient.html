@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8">
+<title>Actualizar Cliente</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+	crossorigin="anonymous">
+<script src="http://code.jquery.com/jquery-3.6.1.min.js"></script>
+</head>
+<body>
+	<div class="container">
+		<h1>Añadir Cliente</h1>
+		<form th:action="@{/clientes/save}" th:object="${cliente}"
+			method="post" onsubmit="return validacion()">
+			<div class="mb-3">
+				<label for="formGroupExampleInput" class="form-label">Documento
+					Identidad </label> <input type="number" class="form-control" id="id"
+					name="id" placeholder="Escriba el Documento de identidad">
+			</div>
+			<div class="mb-3">
+				<label for="formGroupExampleInput" class="form-label">Nombres
+				</label> <input type="text" class="form-control" id="nombres" name="name"
+					placeholder="Escriba los nombres del cliente">
+			</div>
+			<div class="mb-3">
+				<label for="formGroupExampleInput" class="form-label">Apellidos
+				</label> <input type="text" class="form-control" id="formGroupExampleInput"
+					name="lastname" placeholder="Escriba los apellidos del cliente">
+			</div>
+			<div class="mb-3">
+				<label for="formGroupExampleInput" class="form-label">Fecha
+					Nacimiento </label> <input type="Date" class="form-control" id="cumple"
+					name="birthdate"
+					placeholder="Elija la fecha de nacimiento del cliente">
+			</div>
+			<div class="mb-3">
+				<label for="formGroupExampleInput" class="form-label">Ciudad</label>
+				<select class="form-select" aria-label="Default select example"
+					th:field="*{city}">
+					<option th:value="'Bogota'" th:text="'Bogota'"></option>
+					<option th:value="'Medellin'" th:text="'Medellin'"></option>
+					<option th:value="'Cali'" th:text="'Cali'"></option>
+					<option th:value="'Cartagena'" th:text="'Cartagena'"></option>
+					<option th:value="'Santa Marta'" th:text="'Santa Marta'"></option>
+					<option th:value="'Barranquilla'" th:text="'Barranquilla'"></option>
+					<option th:value="'Villavicencio'" th:text="'Villavicencio'"></option>
+					<option th:value="'Florencia'" th:text="'Florencia'"></option>
+					<option th:value="'Bucaramanga'" th:text="'Bucaramanga'"></option>
+					<option th:value="'Tunja'" th:text="'Tunja'"></option>
+				</select>
+			</div>
+			<div class="mb-3">
+				<label for="formGroupExampleInput2" class="form-label">Correo
+					electronico </label> <input type="text" class="form-control"
+					id="formGroupExampleInput2" name="email"
+					placeholder="Escriba el correo electronico del cliente">
+			</div>
+			<div class="mb-3">
+				<label for="formGroupExampleInput2" class="form-label">Telefono
+				</label> <input type="number" class="form-control"
+					id="formGroupExampleInput2" name="telephone"
+					placeholder="Escriba el telefono del cliente">
+			</div>
+			<div class="mb-3">
+				<label for="formGroupExampleInput2" class="form-label">Ocupación</label>
+				<select class="form-select" aria-label="Default select example"
+					th:field="*{occupation}">
+					<option th:value="'Empleado'" th:text="'Empleado'"></option>
+					<option th:value="'Independiente'" th:text="'Independiente'"></option>
+					<option th:value="'Pensionado'" th:text="'Pensionado'"></option>
+				</select>
+			</div>
+			<div class="mb-3">
+				<label for="formGroupExampleInput2" class="form-label">Edad</label>
+				<input type="text" class="form-control" id="age" name="age">
+			</div>
+			<div class="mb-3">
+				<label for="formGroupExampleInput2" class="form-label">Viabilidad</label>
+				<label for="formGroupExampleInput2" class="form-label"></label> <input
+					type="text" class="form-control" id="viabilidad" name="viability"
+					readonly>
+			</div>
+			<button type="submit" class="btn btn-success">Guardar</button>
+		</form>
+	</div>
+	<script type="text/javascript">
+$(function(){
+    $('#cumple').on('change', calcularEdad);
+});
+
+function calcularEdad() {
+    
+    fecha = $(this).val();
+    var hoy = new Date();
+    var cumpleanos = new Date(fecha);
+    var edad = hoy.getFullYear() - cumpleanos.getFullYear();
+    var m = hoy.getMonth() - cumpleanos.getMonth();
+
+    if (m < 0 || (m === 0 && hoy.getDate() < cumpleanos.getDate())) {
+        edad--;
+    }
+    $('#age').val(edad);
+    
+}
+var id = "age";
+
+viabilidad(id);
+
+$(age).on('change', viabilidad);
+
+
+function viabilidad(edad) {
+	let variable = document.getElementById(edad).value;
+  if(variable < 18 | variable > 65){
+	  viability = 'No viable'
+  }else if(variable >= 18){
+	  viability = 'Viable'
+  }else{
+	  alert('algo anda mal');
+  }
+  $('#viabilidad').val(viability);
+ 
+  
+}
+</script>
+</body>
+</html>
